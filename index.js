@@ -11,3 +11,19 @@ function addBookToLibrary(id, title, author, pages) {
   const book = new Book(id, title, author, pages);
   myLibrary.push(book);
 }
+
+addBookToLibrary(crypto.randomUUID(), "James Clear", "Atomic Habits", 320);
+console.log(myLibrary);
+
+const bookList = document.querySelector(".book-list");
+const bookCard = document.createElement("div");
+bookCard.setAttribute("class", "book-card");
+
+for(let book of myLibrary) {
+    console.log(book);
+    const titleElement = document.createElement("h4");
+    titleElement.textContent = `${book.title}`;
+    
+    bookCard.appendChild(titleElement);
+    bookList.appendChild(bookCard);
+} 

@@ -23,7 +23,16 @@ for(let book of myLibrary) {
     console.log(book);
     const titleElement = document.createElement("h4");
     titleElement.textContent = `${book.title}`;
-    
+
+    const authorElement = document.createElement("h4");
+    authorElement.textContent = `${book.author}`;
+
+    const pagesElement = document.createElement("p");
+    pagesElement.textContent = `${book.pages}`;
+
+
     bookCard.appendChild(titleElement);
+    bookCard.appendChild(authorElement);
+    bookCard.append(pagesElement);
     bookList.appendChild(bookCard);
 } 

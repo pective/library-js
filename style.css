@@ -1,3 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.display {
+    display: grid;
+    grid-template-rows: 1fr 7fr;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    height: 70px;
+    background-color: #322F35;
+    color: #F5EFF7;
+    border-radius: 0 0 10px 10px;
+}
+
 .book-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

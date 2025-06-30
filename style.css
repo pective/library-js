@@ -14,16 +14,24 @@ body {
     align-items: center;
     font-size: 1.6rem;
     height: 70px;
-    background-color: #322F35;
-    color: #F5EFF7;
+    background-color: #C7BEBD;
+    color: #1D1B20;
     border-radius: 0 0 10px 10px;
+    margin-bottom: 3em;
+    box-shadow: 0px 10px 30px -8px rgba(0,0,0,0.54);
+
 }
 
 .book-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10em;
+    margin-inline: 15vw;
 }
 
 .book-card {
-    border: 2px solid black;
+    text-align: center;
+    background-color: #BCD8B7;
+    border-radius: 12px;
+    box-shadow: 0px 10px 30px -8px rgba(0,0,0,0.54);
 }

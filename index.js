@@ -7,20 +7,36 @@ function Book(id, title, author, pages) {
     this.pages = pages;
 }
 
-function addBookToLibrary(id, title, author, pages) {
-  const book = new Book(id, title, author, pages);
-  myLibrary.push(book);
-}
-
-addBookToLibrary(crypto.randomUUID(), "Atomic Habits", "James Clear", 320);
-addBookToLibrary(crypto.randomUUID(), "Hobbit", "J.R.R. Tolkien", 420);
 console.log(myLibrary);
 
 const bookList = document.querySelector(".book-list");
 
+const dialog = document.querySelector("dialog");
+
+document.querySelector(".book-add").addEventListener("click", () => {
+    dialog.showModal();
+});
+
+document.querySelector(".dialog-book-add").addEventListener("click", () => {
+    const bookTitle = document.querySelector("input[id=title]").value;
+    
+    addBookToLibrary(crypto.randomUUID(), bookTitle, "sdfsdfd", 2222);
+
+    dialog.close();
+});
 
 
-for(let book of myLibrary) {
+function addBookToLibrary(id, title, author, pages) {
+  const book = new Book(id, title, author, pages);
+  myLibrary.push(book);
+
+  refreshBookList();
+}
+
+function refreshBookList() {
+  bookList.innerHTML = "";
+
+  for(let book of myLibrary) {
     const bookCard = document.createElement("div");
     bookCard.setAttribute("class", "book-card");
 
@@ -38,4 +54,10 @@ for(let book of myLibrary) {
     bookCard.appendChild(authorElement);
     bookCard.append(pagesElement);
     bookList.appendChild(bookCard);
-} 
+}
+}
+
+addBookToLibrary(crypto.randomUUID(), "Atomic Habits", "James Clear", 320);
+addBookToLibrary(crypto.randomUUID(), "Hobbit", "J.R.R. Tolkien", 420);
+
+refreshBookList();

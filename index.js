@@ -25,6 +25,10 @@ document.querySelector(".dialog-book-add").addEventListener("click", () => {
     dialog.close();
 });
 
+document.querySelector(".cancel").addEventListener("click", () => {
+    dialog.close();
+});
+
 
 function addBookToLibrary(id, title, author, pages) {
   const book = new Book(id, title, author, pages);

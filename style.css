@@ -51,10 +51,13 @@ body {
 dialog {
     background-color: #ECE6E0;
     max-width: 400px;
-    display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
     border-radius: 30px;
     border: none;
     box-shadow: 1px 10px 26px -3px rgba(0,0,0,0.75);
+}
+
+dialog:not([open]) {
+    display: none;
 }

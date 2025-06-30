@@ -17,11 +17,13 @@ addBookToLibrary(crypto.randomUUID(), "Hobbit", "J.R.R. Tolkien", 420);
 console.log(myLibrary);
 
 const bookList = document.querySelector(".book-list");
-const bookCard = document.createElement("div");
-bookCard.setAttribute("class", "book-card");
+
+
 
 for(let book of myLibrary) {
-    console.log(book);
+    const bookCard = document.createElement("div");
+    bookCard.setAttribute("class", "book-card");
+
     const titleElement = document.createElement("h4");
     titleElement.textContent = `${book.title}`;
 

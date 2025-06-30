@@ -13,6 +13,7 @@ function addBookToLibrary(id, title, author, pages) {
 }
 
 addBookToLibrary(crypto.randomUUID(), "Atomic Habits", "James Clear", 320);
+addBookToLibrary(crypto.randomUUID(), "Hobbit", "J.R.R. Tolkien", 420);
 console.log(myLibrary);
 
 const bookList = document.querySelector(".book-list");

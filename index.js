@@ -1,10 +1,11 @@
 const myLibrary = [];
 
-function Book(id, title, author, pages) {
+function Book(id, title, author, pages, read) {
     this.id = id;
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.read = read;
 }
 
 console.log(myLibrary);
@@ -19,8 +20,11 @@ document.querySelector(".book-add").addEventListener("click", () => {
 
 document.querySelector(".dialog-book-add").addEventListener("click", () => {
     const bookTitle = document.querySelector("input[id=title]").value;
+    const bookAuthor = document.querySelector("input[id=author]").value;
+    const bookPages = document.querySelector("input[id=pages]").value;
+    const bookRead = document.querySelector("input[id=read]").value;
     
-    addBookToLibrary(crypto.randomUUID(), bookTitle, "sdfsdfd", 2222);
+    addBookToLibrary(crypto.randomUUID(), bookTitle, bookAuthor, bookPages);
 
     dialog.close();
 });
@@ -30,8 +34,8 @@ document.querySelector(".cancel").addEventListener("click", () => {
 });
 
 
-function addBookToLibrary(id, title, author, pages) {
-  const book = new Book(id, title, author, pages);
+function addBookToLibrary(id, title, author, pages, read) {
+  const book = new Book(id, title, author, pages, read);
   myLibrary.push(book);
 
   refreshBookList();
@@ -53,15 +57,19 @@ function refreshBookList() {
     const pagesElement = document.createElement("p");
     pagesElement.textContent = `${book.pages}`;
 
+    const readElement = document.createElement("p");
+    readElement.textContent = `${book.read}`; 
+
 
     bookCard.appendChild(titleElement);
     bookCard.appendChild(authorElement);
-    bookCard.append(pagesElement);
+    bookCard.appendChild(pagesElement);
+    bookCard.appendChild(readElement);
     bookList.appendChild(bookCard);
 }
 }
 
-addBookToLibrary(crypto.randomUUID(), "Atomic Habits", "James Clear", 320);
-addBookToLibrary(crypto.randomUUID(), "Hobbit", "J.R.R. Tolkien", 420);
+addBookToLibrary(crypto.randomUUID(), "Atomic Habits", "James Clear", 320, "read");
+addBookToLibrary(crypto.randomUUID(), "Hobbit", "J.R.R. Tolkien", 420, "unread");
 
 refreshBookList();

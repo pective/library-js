@@ -44,7 +44,7 @@ function addBookToLibrary(id, title, author, pages, read) {
   const book = new Book(id, title, author, pages, read);
   myLibrary.push(book);
 
-  createBookList();
+  refreshBookList();
 }
 
 function createBookList() {
@@ -63,18 +63,12 @@ function createBookList() {
 
         const readElement = document.createElement("button");
         readElement.textContent = book.read;
-        if(readElement.textContent === "read") {
-                readElement.textContent = "unread";
-                book.read = "unread"
-                readElement.style.backgroundColor = "#DDA15E";
-                
-            } else {
-                readElement.textContent = "read";
-                book.read = "read";
-                readElement.style.backgroundColor = "#606C38";
-                 
-            }
-        readElement.textContent = `${book.read}`;
+        
+        if(book.read === "read") {
+            readElement.style.backgroundColor = "#606C38";
+        } else {
+            readElement.style.backgroundColor = "#DDA15E";
+        }
         
         readElement.addEventListener("click", (e) => {
             switch (book.read) {
@@ -88,14 +82,12 @@ function createBookList() {
                     readElement.textContent = "read";
                     readElement.style.backgroundColor = "#606C38";
                     break;
-            
                 default:
                     break;
             }
         })
 
         readElement.setAttribute("class", "read-button");
-
 
         bookCard.appendChild(titleElement);
         bookCard.appendChild(authorElement);

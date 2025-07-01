@@ -44,35 +44,71 @@ function addBookToLibrary(id, title, author, pages, read) {
   const book = new Book(id, title, author, pages, read);
   myLibrary.push(book);
 
-  refreshBookList();
+  createBookList();
+}
+
+function createBookList() {
+    for(let book of myLibrary) {
+        const bookCard = document.createElement("div");
+        bookCard.setAttribute("class", "book-card");
+
+        const titleElement = document.createElement("h4");
+        titleElement.textContent = `${book.title}`;
+
+        const authorElement = document.createElement("h4");
+        authorElement.textContent = `${book.author}`;
+
+        const pagesElement = document.createElement("p");
+        pagesElement.textContent = `${book.pages}`;
+
+        const readElement = document.createElement("button");
+        readElement.textContent = book.read;
+        if(readElement.textContent === "read") {
+                readElement.textContent = "unread";
+                book.read = "unread"
+                readElement.style.backgroundColor = "#DDA15E";
+                
+            } else {
+                readElement.textContent = "read";
+                book.read = "read";
+                readElement.style.backgroundColor = "#606C38";
+                 
+            }
+        readElement.textContent = `${book.read}`;
+        
+        readElement.addEventListener("click", (e) => {
+            switch (book.read) {
+                case "read":
+                    book.read = "unread"
+                    readElement.textContent = "unread";
+                    readElement.style.backgroundColor = "#DDA15E";
+                    break;
+                case "unread":
+                    book.read = "read";
+                    readElement.textContent = "read";
+                    readElement.style.backgroundColor = "#606C38";
+                    break;
+            
+                default:
+                    break;
+            }
+        })
+
+        readElement.setAttribute("class", "read-button");
+
+
+        bookCard.appendChild(titleElement);
+        bookCard.appendChild(authorElement);
+        bookCard.appendChild(pagesElement);
+        bookCard.appendChild(readElement);
+        bookList.appendChild(bookCard);
+    }
 }
 
 function refreshBookList() {
-  bookList.innerHTML = "";
+    bookList.innerHTML = "";
 
-  for(let book of myLibrary) {
-    const bookCard = document.createElement("div");
-    bookCard.setAttribute("class", "book-card");
-
-    const titleElement = document.createElement("h4");
-    titleElement.textContent = `${book.title}`;
-
-    const authorElement = document.createElement("h4");
-    authorElement.textContent = `${book.author}`;
-
-    const pagesElement = document.createElement("p");
-    pagesElement.textContent = `${book.pages}`;
-
-    const readElement = document.createElement("button");
-    readElement.textContent = `${book.read}`; 
-
-
-    bookCard.appendChild(titleElement);
-    bookCard.appendChild(authorElement);
-    bookCard.appendChild(pagesElement);
-    bookCard.appendChild(readElement);
-    bookList.appendChild(bookCard);
-}
+    createBookList();
 }
 
 addBookToLibrary(crypto.randomUUID(), "Atomic Habits", "James Clear", 320, "read");

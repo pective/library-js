@@ -22,7 +22,13 @@ document.querySelector(".dialog-book-add").addEventListener("click", () => {
     const bookTitle = document.querySelector("input[id=title]").value;
     const bookAuthor = document.querySelector("input[id=author]").value;
     const bookPages = document.querySelector("input[id=pages]").value;
-    const bookRead = document.querySelector("input[id=read]").value;
+    let bookRead = document.querySelector("input[id=read]").checked;
+
+    if(bookRead) {
+        bookRead = "read";
+    } else {
+        bookRead = "unread";
+    }
     
     addBookToLibrary(crypto.randomUUID(), bookTitle, bookAuthor, bookPages, bookRead);
 
@@ -57,7 +63,7 @@ function refreshBookList() {
     const pagesElement = document.createElement("p");
     pagesElement.textContent = `${book.pages}`;
 
-    const readElement = document.createElement("p");
+    const readElement = document.createElement("button");
     readElement.textContent = `${book.read}`; 
 
 

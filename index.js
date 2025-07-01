@@ -24,7 +24,7 @@ document.querySelector(".dialog-book-add").addEventListener("click", () => {
     const bookPages = document.querySelector("input[id=pages]").value;
     const bookRead = document.querySelector("input[id=read]").value;
     
-    addBookToLibrary(crypto.randomUUID(), bookTitle, bookAuthor, bookPages);
+    addBookToLibrary(crypto.randomUUID(), bookTitle, bookAuthor, bookPages, bookRead);
 
     dialog.close();
 });

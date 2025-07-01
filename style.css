@@ -18,25 +18,27 @@ body {
     background-color: #606C38;
     color: white;
     border-radius: 0 0 10px 10px;
-    margin-bottom: 3em;
     box-shadow: 0px 10px 30px -8px rgba(0,0,0,0.54);
 }
 
 .book-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10em;
-    margin-inline: 15vw;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    min-height: 620px;
+    gap: 9em;
+    margin: 3em;
 }
 
 .book-card {
+    display: flex;
+    flex-flow: column;
     text-align: center;
     background-color: #283618;
     color: white;
     border-radius: 12px;
     align-items: center;
     box-shadow: 0px 10px 30px -8px rgba(0,0,0,0.54);
-    height: 200px;
+    max-height: 250px;
 }
 .button-container {
     grid-row: 3 / 4;

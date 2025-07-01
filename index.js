@@ -25,9 +25,9 @@ document.querySelector(".dialog-book-add").addEventListener("click", () => {
     let bookRead = document.querySelector("input[id=read]").checked;
 
     if(bookRead) {
-        bookRead = "read";
+        bookRead = "Read";
     } else {
-        bookRead = "unread";
+        bookRead = "Unread";
     }
     
     addBookToLibrary(crypto.randomUUID(), bookTitle, bookAuthor, bookPages, bookRead);
@@ -61,10 +61,13 @@ function createBookList() {
         const pagesElement = document.createElement("p");
         pagesElement.textContent = `${book.pages}`;
 
+        const buttonsContainer = document.createElement("div");
+        buttonsContainer.setAttribute("class", "card-button-container");
+
         const readElement = document.createElement("button");
         readElement.textContent = book.read;
         
-        if(book.read === "read") {
+        if(book.read === "Read") {
             readElement.style.backgroundColor = "#606C38";
         } else {
             readElement.style.backgroundColor = "#DDA15E";
@@ -72,27 +75,37 @@ function createBookList() {
         
         readElement.addEventListener("click", (e) => {
             switch (book.read) {
-                case "read":
-                    book.read = "unread"
-                    readElement.textContent = "unread";
+                case "Read":
+                    book.read = "Unread"
+                    readElement.textContent = "Unread";
                     readElement.style.backgroundColor = "#DDA15E";
                     break;
-                case "unread":
-                    book.read = "read";
-                    readElement.textContent = "read";
+                case "Unread":
+                    book.read = "Read";
+                    readElement.textContent = "Read";
                     readElement.style.backgroundColor = "#606C38";
                     break;
                 default:
                     break;
             }
         })
-
         readElement.setAttribute("class", "read-button");
 
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.setAttribute("class", "remove-button");
+
+        removeButton.addEventListener("click", () => {
+            myLibrary.splice(myLibrary.indexOf(book), 1);
+            refreshBookList();
+        })
+
+        buttonsContainer.appendChild(readElement);
+        buttonsContainer.appendChild(removeButton);
         bookCard.appendChild(titleElement);
         bookCard.appendChild(authorElement);
         bookCard.appendChild(pagesElement);
-        bookCard.appendChild(readElement);
+        bookCard.appendChild(buttonsContainer);
         bookList.appendChild(bookCard);
     }
 }
@@ -103,7 +116,7 @@ function refreshBookList() {
     createBookList();
 }
 
-addBookToLibrary(crypto.randomUUID(), "Atomic Habits", "James Clear", 320, "read");
-addBookToLibrary(crypto.randomUUID(), "Hobbit", "J.R.R. Tolkien", 420, "unread");
+addBookToLibrary(crypto.randomUUID(), "Atomic Habits", "James Clear", 320, "Read");
+addBookToLibrary(crypto.randomUUID(), "Hobbit", "J.R.R. Tolkien", 420, "Unread");
 
 refreshBookList();

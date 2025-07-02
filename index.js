@@ -54,6 +54,7 @@ function createBookList() {
 
         const titleElement = document.createElement("h4");
         titleElement.textContent = `${book.title}`;
+        titleElement.style.fontSize = "1.3rem";
 
         const authorElement = document.createElement("h4");
         authorElement.textContent = `${book.author}`;

@@ -40,9 +40,12 @@ body {
     color: white;
     border-radius: 12px;
     align-items: center;
+    justify-content: center;
     box-shadow: 0px 10px 30px -8px rgba(0,0,0,0.54);
     max-height: 250px;
+    gap: 25px;
 }
+
 .button-container {
     position: fixed;
     bottom: 20px;

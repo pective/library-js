@@ -54,13 +54,14 @@ function createBookList() {
 
         const titleElement = document.createElement("h4");
         titleElement.textContent = `${book.title}`;
-        titleElement.style.fontSize = "1.3rem";
+        titleElement.style.fontSize = "1.6rem";
 
         const authorElement = document.createElement("h4");
         authorElement.textContent = `${book.author}`;
 
         const pagesElement = document.createElement("p");
         pagesElement.textContent = `${book.pages}`;
+        pagesElement.style.color = "#aaa"
 
         const buttonsContainer = document.createElement("div");
         buttonsContainer.setAttribute("class", "card-button-container");

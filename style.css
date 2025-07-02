@@ -48,6 +48,11 @@ body {
 .book-card > * {
     margin: 0;
 }
+
+button {
+    cursor: pointer;
+}
+
 .button-container {
     position: fixed;
     bottom: 20px;

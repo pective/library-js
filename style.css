@@ -45,7 +45,9 @@ body {
     max-height: 250px;
     gap: 25px;
 }
-
+.book-card > * {
+    margin: 0;
+}
 .button-container {
     position: fixed;
     bottom: 20px;

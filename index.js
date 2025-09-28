@@ -15,6 +15,7 @@ console.log(myLibrary);
 const bookList = document.querySelector(".book-list");
 
 const dialog = document.querySelector("dialog");
+const bookForm = document.querySelector(".book-form");
 
 document.querySelector(".book-add").addEventListener("click", () => {
     dialog.showModal();
@@ -26,6 +27,14 @@ document.querySelector(".dialog-book-add").addEventListener("click", () => {
     const bookPages = document.querySelector("input[id=pages]").value;
     let bookRead = document.querySelector("input[id=read]").checked;
 
+    if (bookTitle == null ||
+        !bookAuthor ||
+        !bookPages
+    ) {
+        showError("Please fill out all required fields!");
+        return;
+    }
+
     if(bookRead) {
         bookRead = "Read";
     } else {
@@ -34,6 +43,7 @@ document.querySelector(".dialog-book-add").addEventListener("click", () => {
     
     addBookToLibrary(crypto.randomUUID(), bookTitle, bookAuthor, bookPages, bookRead);
 
+    bookForm.reset();
     dialog.close();
 });
 
@@ -112,6 +122,26 @@ function createBookList() {
         bookCard.appendChild(buttonsContainer);
         bookList.appendChild(bookCard);
     }
+}
+
+function showError(message) {
+    const errorElement = document.createElement("div");
+    errorElement.textContent = message;
+    errorElement.classList.add("error-container");
+
+    const closeButton = document.createElement("button");
+    closeButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-thick</title><path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" /></svg>'
+    closeButton.addEventListener("click", () => {
+        errorElement.remove();
+    })
+
+    const existingError = dialog.querySelector(".error-container");
+    if (existingError) {
+        existingError.remove();
+    }
+
+    errorElement.appendChild(closeButton);    
+    dialog.prepend(errorElement);
 }
 
 function refreshBookList() {

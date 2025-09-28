@@ -114,3 +114,18 @@ dialog::backdrop {
 dialog:not([open]) {
     display: none;
 }
+
+.error-container {
+    color: red;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.error-container button {
+    background-color: transparent;
+    border: none;
+    fill: red;
+    width: 30px;
+}
